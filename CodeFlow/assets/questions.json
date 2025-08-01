@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What does DSA stand for?",
+        "options": [
+            "Data Structure and Algorithms",
+            "Data Science and Analysis",
+            "Digital System Architecture",
+            "Dynamic Software Application"
+        ],
+        "answer": "Data Structure and Algorithms"
+    },
+    {
+        "question": "Which of the following is a Python framework for web development?",
+        "options": [
+            "Django",
+            "Flask",
+            "Ruby on Rails",
+            "Spring"
+        ],
+        "answer": "Flask"
+    },
+    {
+        "question": "What is the output of print(2 ** 3)?",
+        "options": [
+            "6",
+            "8",
+            "9",
+            "3"
+        ],
+        "answer": "8"
+    },
+    {
+        "question": "Which of the following is a feature of Object-Oriented Programming?",
+        "options": [
+            "Encapsulation",
+            "Polymorphism",
+            "Inheritance",
+            "All of the above"
+        ],
+        "answer": "All of the above"
+    },
+    {
+        "question": "What is the primary purpose of a constructor in a class?",
+        "options": [
+            "To initialize objects",
+            "To destroy objects",
+            "To create a new class",
+            "To inherit properties"
+        ],
+        "answer": "To initialize objects"
+    }
+]
