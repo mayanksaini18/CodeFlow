@@ -1,128 +1,146 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - DSA Quest</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - DSA Quest</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    .topic-progress-item {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      background: #fff;
+    }
+    .topic-progress-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .progress-bar {
+      height: 8px;
+    }
+    .difficulty-badge {
+      margin-top: 5px;
+    }
+  </style>
 </head>
-<body>
-    <!-- Dashboard Page -->
-    <div id="dashboardPage" class="page active">
-        <header class="header">
-            <nav class="nav">
-                <a href="index.html" class="btn btn-ghost">← Back to Home</a>
-                <div class="logo">
-                    <div class="logo-icon">D</div>
-                    <span class="logo-text">DSA Quest</span>
-                </div>
-                <a href="topics.html" class="btn btn-primary">Take Quiz</a>
-            </nav>
-        </header>
-
-        <div class="container">
-            <div class="page-header">
-                <h1>Your Progress Dashboard</h1>
-                <p>Track your DSA learning journey</p>
-            </div>
-
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">🏆</div>
-                    <div class="stat-value" id="totalCompleted">0/100</div>
-                    <div class="stat-label">Questions Completed</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">🎯</div>
-                    <div class="stat-value" id="averageProgress">0%</div>
-                    <div class="stat-label">Average Progress</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">⭐</div>
-                    <div class="stat-value" id="topicsStarted">0</div>
-                    <div class="stat-label">Topics Started</div>
-                </div>
-            </div>
-
-            <div class="progress-section">
-                <h2>Topic Performance</h2>
-                <div class="topic-progress" id="topicProgress">
-                    <!-- Topic progress will be populated by JavaScript -->
-                </div>
-            </div>
-        </div>
+<body class="bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-3">
+    <a href="index.html" class="btn btn-outline-secondary">
+      <i class="bi bi-arrow-left"></i> Home
+    </a>
+    <div class="ms-auto d-flex align-items-center">
+      <span class="me-3 fw-bold"><i class="bi bi-code-slash"></i> DSA Quest</span>
+      <a href="topics.html" class="btn btn-primary">
+        <i class="bi bi-lightning-fill"></i> Take Quiz
+      </a>
     </div>
- <script src="questions.js"></script>
-    <script>
-        // Load saved data
-        function loadSavedData() {
-            const savedData = localStorage.getItem('dsaQuestData');
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                topics.forEach(topic => {
-                    const savedTopic = data.topics?.find(t => t.id === topic.id);
-                    if (savedTopic) {
-                        topic.completed = savedTopic.completed;
-                    }
-                });
-            }
-        }
+  </nav>
 
-        // Render dashboard
-        function renderDashboard() {
-            const topicProgress = document.getElementById('topicProgress');
-            topicProgress.innerHTML = '';
-            
-            let totalCompleted = 0;
-            let totalQuestions = 0;
-            let topicsStarted = 0;
-            
-            topics.forEach(topic => {
-                totalCompleted += topic.completed;
-                totalQuestions += topic.questions;
-                if (topic.completed > 0) topicsStarted++;
-                
-                const progressItem = document.createElement('div');
-                progressItem.className = 'topic-progress-item';
-                
-                const progressPercentage = Math.round((topic.completed / topic.questions) * 100);
-                
-                progressItem.innerHTML = `
-                    <div class="topic-progress-info">
-                        <span class="topic-icon">${topic.icon}</span>
-                        <div>
-                            <div class="topic-title">${topic.name}</div>
-                            <div class="topic-subtitle">${topic.completed}/${topic.questions} completed</div>
-                        </div>
-                    </div>
-                    <div class="topic-progress-stats">
-                        <div class="topic-progress-bar">
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: ${progressPercentage}%"></div>
-                            </div>
-                        </div>
-                        <div class="difficulty-badge difficulty-${topic.difficulty.toLowerCase()}">
-                            ${topic.difficulty}
-                        </div>
-                    </div>
-                `;
-                
-                topicProgress.appendChild(progressItem);
-            });
-            
-            // Update stats
-            document.getElementById('totalCompleted').textContent = `${totalCompleted}/${totalQuestions}`;
-            document.getElementById('averageProgress').textContent = 
-                Math.round((totalCompleted / totalQuestions) * 100) + '%';
-            document.getElementById('topicsStarted').textContent = topicsStarted;
-        }
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <h1 class="fw-bold">Your Progress Dashboard</h1>
+      <p class="text-muted">Track your DSA learning journey</p>
+    </div>
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            loadSavedData();
-            renderDashboard();
+    <div class="row text-center mb-4">
+      <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <i class="bi bi-trophy-fill text-warning fs-2"></i>
+            <h4 class="my-2" id="totalCompleted">0/100</h4>
+            <p class="text-muted">Questions Completed</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <i class="bi bi-bullseye text-danger fs-2"></i>
+            <h4 class="my-2" id="averageProgress">0%</h4>
+            <p class="text-muted">Average Progress</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <i class="bi bi-stars text-info fs-2"></i>
+            <h4 class="my-2" id="topicsStarted">0</h4>
+            <p class="text-muted">Topics Started</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="mb-3">Topic Performance</h3>
+    <div id="topicProgress"></div>
+  </div>
+
+  <script src="questions.js"></script>
+  <script>
+    function loadSavedData() {
+      const savedData = localStorage.getItem('dsaQuestData');
+      if (savedData) {
+        const data = JSON.parse(savedData);
+        topics.forEach(topic => {
+          const savedTopic = data.topics?.find(t => t.id === topic.id);
+          if (savedTopic) {
+            topic.completed = savedTopic.completed;
+          }
         });
-    </script>
+      }
+    }
+
+    function renderDashboard() {
+      const topicProgress = document.getElementById('topicProgress');
+      topicProgress.innerHTML = '';
+
+      let totalCompleted = 0;
+      let totalQuestions = 0;
+      let topicsStarted = 0;
+
+      topics.forEach(topic => {
+        totalCompleted += topic.completed;
+        totalQuestions += topic.questions;
+        if (topic.completed > 0) topicsStarted++;
+
+        const percentage = Math.round((topic.completed / topic.questions) * 100);
+
+        const item = document.createElement('div');
+        item.className = 'topic-progress-item';
+
+        item.innerHTML = `
+          <div class="topic-progress-info mb-2">
+            <i class="${topic.icon} fs-4 text-primary"></i>
+            <div>
+              <div class="fw-bold">${topic.name}</div>
+              <small class="text-muted">${topic.completed}/${topic.questions} completed</small>
+            </div>
+          </div>
+          <div class="topic-progress-stats">
+            <div class="progress mb-1">
+              <div class="progress-bar" role="progressbar" style="width: ${percentage}%" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <span class="badge bg-secondary">${topic.difficulty}</span>
+          </div>
+        `;
+
+        topicProgress.appendChild(item);
+      });
+
+      document.getElementById('totalCompleted').textContent = `${totalCompleted}/${totalQuestions}`;
+      document.getElementById('averageProgress').textContent = Math.round((totalCompleted / totalQuestions) * 100) + '%';
+      document.getElementById('topicsStarted').textContent = topicsStarted;
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      loadSavedData();
+      renderDashboard();
+    });
+  </script>
 </body>
 </html>
