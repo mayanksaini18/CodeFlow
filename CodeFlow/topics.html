@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topics - DSA Quest</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Topics Page -->
+    <div id="topicsPage" class="page active">
+        <header class="header">
+            <nav class="nav">
+                <a href="index.html" class="btn btn-ghost">← Back to Home</a>
+                <div class="logo">
+                    <!-- <div class="logo-icon">D</div> -->
+                    <span class="logo-text">med Eazy</span>
+                </div>
+                <a href="dashboard.html" class="btn btn-ghost">Dashboard</a>
+            </nav>
+        </header>
+
+        <div class="container">
+            <div class="page-header">
+                <h1>Choose Your Topic</h1>
+                <p>Select a DSA topic to start practicing</p>
+            </div>
+
+            <div class="topics-grid" id="topicsGrid">
+                <!-- Topics will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script>
+        // Load saved data from localStorage
+        function loadSavedData() {
+            const savedData = localStorage.getItem('dsaQuestData');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                topics.forEach(topic => {
+                    const savedTopic = data.topics?.find(t => t.id === topic.id);
+                    if (savedTopic) {
+                        topic.completed = savedTopic.completed;
+                    }
+                });
+            }
+        }
+
+        // Render topics grid
+        function renderTopics() {
+            const topicsGrid = document.getElementById('topicsGrid');
+            topicsGrid.innerHTML = '';
+            
+            topics.forEach(topic => {
+                const topicCard = document.createElement('div');
+                topicCard.className = 'topic-card';
+                topicCard.onclick = () => selectTopic(topic.id);
+                
+                const progressPercentage = Math.round((topic.completed / topic.questions) * 100);
+                
+                topicCard.innerHTML = `
+                    <div class="topic-header">
+                        <div class="topic-info">
+                            <div class="topic-icon">${topic.icon}</div>
+                            <div>
+                                <div class="topic-title">${topic.name}</div>
+                                <div class="topic-subtitle">${topic.questions} questions</div>
+                            </div>
+                        </div>
+                        <div class="difficulty-badge difficulty-${topic.difficulty.toLowerCase()}">
+                            ${topic.difficulty}
+                        </div>
+                    </div>
+                    <div class="topic-progress">
+                        <div class="progress-info">
+                            <span>Progress</span>
+                            <span>${topic.completed}/${topic.questions}</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${progressPercentage}%"></div>
+                        </div>
+                    </div>
+                `;
+                
+                topicsGrid.appendChild(topicCard);
+            });
+        }
+
+        // Select topic and go to quiz
+        function selectTopic(topicId) {
+            localStorage.setItem('selectedTopic', topicId);
+            window.location.href = 'quiz.html';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSavedData();
+            renderTopics();
+        });
+    </script>
+</body>
+</html>

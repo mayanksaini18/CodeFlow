@@ -254,6 +254,21 @@ function renderDashboard() {
     });
 }
 
+
+function goToPrevious() {
+  if (currentQuestionIndex > 0) {
+    currentQuestionIndex--;
+    renderQuestion();
+  }
+}
+
+function goToNext() {
+  if (currentQuestionIndex < currentQuestions.length - 1) {
+    currentQuestionIndex++;
+    renderQuestion();
+  }
+}
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
     loadSavedData(); // Load saved progress on page load
