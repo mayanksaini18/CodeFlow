@@ -42,9 +42,9 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav me-3">
-            <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="/projects.html">Projects</a></li>
-            <li class="nav-item"><a class="nav-link" href="/dsa.html">DSA Guide</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="Challenges.html">Challenges</a></li>
+            <li class="nav-item"><a class="nav-link" href="DSAguide.html">DSA Guide</a></li>
             <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
           </ul>
           <button class="btn btn-primary ms-lg-2 mt-2 mt-lg-0" onclick="showTopics()">Get Started</button>
@@ -135,21 +135,22 @@
 
           <!-- Contact Form -->
           <div class="col-md-6">
-            <form onsubmit="event.preventDefault(); alert('Message sent!');">
-              <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" id="name" class="form-control" placeholder="Your name" required />
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" class="form-control" placeholder="Your email" required />
-              </div>
-              <div class="mb-3">
-                <label for="message" class="form-label">Message</label>
-                <textarea id="message" class="form-control" rows="4" placeholder="Your message" required></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
+           <form action="https://formspree.io/f/mkgzvozd" method="POST">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" name="name" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" name="email" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label for="message" class="form-label">Message</label>
+    <textarea name="message" class="form-control" rows="4" required></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Send Message</button>
+</form>
+
           </div>
         </div>
       </div>
