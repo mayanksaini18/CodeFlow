@@ -158,27 +158,38 @@ function renderQuestion() {
     });
 }
 
-// Handle answer selection
 function selectAnswer(answerIndex) {
     const question = currentQuestions[currentQuestionIndex];
     const buttons = document.querySelectorAll('.option-btn');
-    
+
     // Disable all buttons
     buttons.forEach(btn => btn.disabled = true);
-    
+
     // Show correct/incorrect
     buttons[answerIndex].classList.add(answerIndex === question.correct ? 'correct' : 'incorrect');
     if (answerIndex !== question.correct) {
         buttons[question.correct].classList.add('correct');
     }
-    
+
     // Update score
     if (answerIndex === question.correct) {
         score++;
     }
-    
+
     userAnswers[currentQuestionIndex] = answerIndex;
-    
+
+    // Show explanation
+    let explanationDiv = document.getElementById('explanation');
+    if (!explanationDiv) {
+        explanationDiv = document.createElement('div');
+        explanationDiv.id = 'explanation';
+        explanationDiv.className = 'alert alert-info mt-3';
+        document.getElementById('quizPage').appendChild(explanationDiv);
+    }
+
+    explanationDiv.innerHTML = `<strong>Explanation:</strong> ${question.explanation || 'No explanation provided.'}`;
+    explanationDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
     // Move to next question after delay
     setTimeout(() => {
         if (currentQuestionIndex < currentQuestions.length - 1) {
@@ -193,8 +204,9 @@ function selectAnswer(answerIndex) {
             }
             showResultsPage();
         }
-    }, 1500);
+    }, 2000);
 }
+
 
 // Render quiz results
 function renderResults() {
