@@ -1,6 +1,6 @@
-# CodeFlow
+# Decode
 
-CodeFlow is a responsive web application designed to help users learn coding concepts through quizzes. The application features a user-friendly interface and tracks user progress.
+Decode is a responsive web application designed to help users learn coding concepts through quizzes. The application features a user-friendly interface and tracks user progress.
 
 ## Features
 
