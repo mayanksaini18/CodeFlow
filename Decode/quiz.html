@@ -40,11 +40,10 @@
                 </div>
                 <div class="explanation" style="display: none; margin-top: 1.5rem; padding: 1rem; background-color: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef;"></div>
             </div>
-             <div class="flex justify-between mt-6">
-                    <button type="button" class="bg-gray-200 hover:bg-gray-300 text-black px-4 py-2 rounded" onclick="goToPrevious()">← Previous</button>
-                    <button type="button" class="bg-gray-200 hover:bg-gray-300 text-black px-4 py-2 rounded" onclick="goToNext()">Next →</button>
-                </div>
-                <p id="explanationText" class="mt-4 text-sm text-gray-700 hidden"></p>
+            <div class="quiz-navigation mt-4 d-flex justify-content-between">
+                <button id="prev-btn" class="btn btn-outline-secondary">← Previous</button>
+                <button id="next-btn" class="btn btn-primary">Next →</button>
+            </div>
         </div>
 
     </div>
