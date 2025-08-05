@@ -68,14 +68,17 @@ function renderQuestion() {
     const optionsContainer = document.getElementById('optionsContainer');
     optionsContainer.innerHTML = '';
 
-    // Hide explanation from previous question
     const explanationDiv = document.querySelector('.explanation');
-    if (explanationDiv) {
+    const previouslySelectedAnswer = userAnswers[currentQuestionIndex];
+
+    // Show explanation if the question has been answered, otherwise hide it.
+    if (previouslySelectedAnswer !== undefined && question.explanation && explanationDiv) {
+        explanationDiv.innerHTML = `<strong>Explanation:</strong> ${question.explanation}`;
+        explanationDiv.style.display = 'block';
+    } else if (explanationDiv) {
         explanationDiv.style.display = 'none';
         explanationDiv.innerHTML = '';
     }
-
-    const previouslySelectedAnswer = userAnswers[currentQuestionIndex];
 
     question.options.forEach((option, index) => {
         const button = document.createElement('button');
