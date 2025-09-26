@@ -1,0 +1,33 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #1a1a1a;
+    border-bottom: 1px solid #333;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #646cff;
+    text-decoration: none;
+}
+
+.navbar-nav {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-nav a {
+    color: rgba(255, 255, 255, 0.87);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.navbar-nav a.active {
+    color: #646cff;
+}

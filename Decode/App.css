@@ -1,0 +1,20 @@
+#root {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.container {
+  padding: 2rem;
+}
+
+.btn {
+  padding: 0.6em 1.2em;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}

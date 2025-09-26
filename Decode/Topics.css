@@ -1,0 +1,65 @@
+.topics-container .page-header {
+    margin-bottom: 2rem;
+}
+
+.topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.topic-card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: left;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.topic-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.topic-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.topic-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.topic-icon {
+    font-size: 2rem;
+}
+
+.topic-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.topic-subtitle {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.difficulty-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.difficulty-easy { background-color: #2a9d8f; }
+.difficulty-medium { background-color: #e9c46a; color: #333; }
+.difficulty-hard { background-color: #e76f51; }
